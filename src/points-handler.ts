@@ -18,6 +18,7 @@ export class PointsHandler {
       .append("circle")
       .attr("r", 3)
       .attr("fill", (d) => {
+        // @ts-expect-error no error
         if (d.y >= 0) {
           return d.abort === true ? "red" : "blue";
         } else {
@@ -41,7 +42,10 @@ export class PointsHandler {
     yScaleZoomed: d3.ScaleLinear<number, number, never>
   ) {
    this._points
+
+    // @ts-expect-error no error
     .attr("cx", (d) => xScaleZoomed(d.x))
+    // @ts-expect-error no error
     .attr("cy", (d) => yScaleZoomed(d.y));
   }
 
